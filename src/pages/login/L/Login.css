@@ -1,0 +1,192 @@
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top left, #111827, #0f172a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ===== LOGIN FORM ===== */
+.login-form {
+  width: 450px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  backdrop-filter: blur(15px);
+  position: relative;
+  padding: 30px 25px;
+  gap: 10px;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 255, 200, 0.2);
+}
+
+/* === Animated Border (kept from your style) === */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.login-form::before,
+.login-form::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 12px;
+  padding: 3px;
+  background-image: conic-gradient(
+    from var(--angle),
+    #00ffff,
+    #00ffcc,
+    #00ffff,
+    #00aaff,
+    #00ffff
+  );
+  z-index: -1;
+  animation: spin 6s linear infinite;
+}
+
+.login-form::after {
+  filter: blur(1.3rem);
+  opacity: 0.7;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* ===== FORM TEXT ===== */
+.left-box {
+  width: 100%;
+  text-align: center;
+}
+
+.left-box h1 {
+  color: #00e6e6;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* ===== INPUT GROUP (floating label kept same style) ===== */
+.input-group {
+  position: relative;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 12px;
+  font-size: 16px;
+  color: #e0e0e0;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  outline: none;
+  transition: 0.3s ease all;
+}
+
+.input-group input:focus {
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.input-group label {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  color: #aaa;
+  font-size: 15px;
+  pointer-events: none;
+  transition: 0.25s ease all;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown):valid ~ label {
+  top: -8px;
+  left: 8px;
+  font-size: 12px;
+  background-color: #0f172a;
+  padding: 0 6px;
+  color: #00ffff;
+}
+
+/* ===== BUTTON ===== */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  background: linear-gradient(90deg, #00ffff, #00aaff);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+}
+
+button:hover {
+  background: linear-gradient(90deg, #00aaff, #00ffff);
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+}
+
+/* ===== ICON BOX ===== */
+.icon-box {
+  margin-top: 25px;
+  gap: 12px;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 8px;
+  color: #00ffff;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background: linear-gradient(135deg, #00ffff, #00aaff);
+  color: #111827;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  transform: scale(1.15);
+}
+
+/* ===== FLEX HELPERS ===== */
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.direction-column {
+  flex-direction: column;
+}

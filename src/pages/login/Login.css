@@ -1,53 +1,204 @@
-
-body{
-    background-color: black;
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* ===== FLEX HELPERS ===== */
+.flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.direction-column {
+  flex-direction: column;
+}
+
+/* ===== CONTAINER ===== */
 .container {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
-.login-form {
-    width: 500px;
-    height: 300px;
-    background-color:blueviolet;
-    border-radius: 10px;
-    position: relative;
+/* ===== FORM CONTAINER (Main Box) ===== */
+.form-container {
+  width: 700px;
+  height: 430px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
 }
 
-@property --angle{
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
+/* ===== Animated Border Effect ===== */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
-.login-form::before, .login-form::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    translate: -50% -50%; 
-    top: 50%;
-    left: 50%;
-    padding: 5px;
-    z-index: -1;
-    border-radius: 10px;
-    background-image: conic-gradient(from var(--angle), transparent 80%, blue);
-    animation: 3s spin linear infinite;
+.form-container::before,
+.form-container::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 12px;
+  padding: 3px;
+  background-image: conic-gradient(
+    from var(--angle),
+    #00ffff,
+    #00aaff,
+    #00ffff,
+    #0077ff,
+    #00ffff
+  );
+  animation: spin 6s linear infinite;
+  z-index: -1;
 }
 
-.login-form::after {
-    filter: blur(1.5rem);
-    opacity: 0.5;
+.form-container::after {
+  filter: blur(1.3rem);
+  opacity: 0.7;
 }
 
 @keyframes spin {
-    from{
-        --angle: 0deg
-    }
-    to {
-        --angle: 360deg
-    }
-    
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
 }
 
+/* ===== LEFT CONTENT ===== */
+.left-content {
+  flex: 1;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-content h2 {
+  color: #00ffff;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 12px;
+  font-size: 16px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background: transparent;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.input-group input:focus {
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+.input-group label {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  color: #ccc;
+  font-size: 15px;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown):valid ~ label {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  background-color: rgba(15, 23, 42, 1);
+  padding: 0 6px;
+  color: #00ffff;
+}
+
+/* ===== LEFT BUTTON ===== */
+.left-content button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #00ffff, #00aaff);
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.left-content button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, #00aaff, #00ffff);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+/* ===== RIGHT CONTENT ===== */
+.right-content {
+  flex: 0.7;
+  background: linear-gradient(180deg, #00aaff, #00ffff);
+  color: #0f172a;
+  padding: 40px;
+  border-radius: 0 12px 12px 0;
+  text-align: center;
+  transition: 0.4s ease;
+}
+
+.right-content h2 {
+  margin-bottom: 10px;
+}
+
+.right-content p {
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.right-content button {
+  background: #0f172a;
+  color: #00ffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.right-content button:hover {
+  background: #111c3d;
+  transform: scale(1.05);
+}
