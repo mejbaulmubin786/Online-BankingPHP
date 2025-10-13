@@ -3,8 +3,10 @@ import './Login.css'
 
 const Login = () => {
   return (
-    <div className='login-form'>
-      
+    <div className="container flex align-center justify-center">
+      <div className='login-form'>
+
+      </div>
     </div>
   )
 }
